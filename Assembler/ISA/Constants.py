@@ -1,5 +1,3 @@
-import sys
-
 class Register:
     def __init__(self,address):
         self.address=address

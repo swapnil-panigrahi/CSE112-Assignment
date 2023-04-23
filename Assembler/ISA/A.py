@@ -1,3 +1,5 @@
+from . import Constants as Const
+
 def add(instruction):
     list = instruction.split()
     if "FLAGS" in list:
