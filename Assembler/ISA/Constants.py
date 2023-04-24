@@ -9,6 +9,17 @@ class Register:
     def __str__(self):
         return f'0b{bin(self.value)[2:].zfill(16)}'
     
+class Memory:
+    def __init__(self,var,address):
+        self.var=var
+        self.address=address
+        self.value=0b000_0000
+        
+    def __repr__(self):
+        return f'0b{bin(self.address)[2:].zfill(16)}'
+    
+    def __str__(self):
+        return f'{self.var} : 0b{bin(self.value)[2:].zfill(7)}'
 class Opcode:
     def __init__(self,opcode):
         self.opcode=opcode
@@ -40,4 +51,6 @@ R6=Register(0b110)
 
 FLAG=Flag(0b111)
 
-Register=[R0,R1,R2,R3,R4,R5,R6,FLAG]
+Reg=[R0,R1,R2,R3,R4,R5,R6,FLAG]
+
+Mem=[]
