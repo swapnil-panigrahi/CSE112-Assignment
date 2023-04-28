@@ -1,5 +1,7 @@
 from . import Constants as Const
 
+LOAD=Const.Opcode(0b00100)
+
 def var(instruction):
     list=instruction.split()
     
@@ -18,6 +20,8 @@ def var(instruction):
             Const.Mem.append(list[1])
         else:
             list[1]=Const.Memory(Const.Mem[-1]+0b1)
+            
+        #return f'{list[1].__repr__()}' 
 
 def load(instruction):
     list = instruction.split()
@@ -30,4 +34,4 @@ def load(instruction):
         return "ERROR: INCOMPLETE INSTRUCTION"
     
     if list[0] != "ld":
-        
+        pass

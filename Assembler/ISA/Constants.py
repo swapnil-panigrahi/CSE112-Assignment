@@ -4,10 +4,10 @@ class Register:
         self.value=0b0000_0000_0000_0000
         
     def __repr__(self):
-        return f'0b{bin(self.address)[2:].zfill(3)}'
+        return f'{bin(self.address)[2:].zfill(3)}'
     
     def __str__(self):
-        return f'0b{bin(self.value)[2:].zfill(16)}'
+        return f'{bin(self.value)[2:].zfill(16)}'
     
 class Memory:
     def __init__(self,var,address):
@@ -16,13 +16,16 @@ class Memory:
         self.value=0b000_0000
         
     def __repr__(self):
-        return f'0b{bin(self.address)[2:].zfill(16)}'
+        return f'{bin(self.address)[2:].zfill(7)}'
     
     def __str__(self):
-        return f'{self.var} : 0b{bin(self.value)[2:].zfill(7)}'
+        return f'{bin(self.value)[2:].zfill(7)}'
 class Opcode:
     def __init__(self,opcode):
         self.opcode=opcode
+    
+    def __str__(self):
+        return f'{bin(self.opcode)[2:].zfill(5)}'
 
 class Flag(Register):
     def __init__(self,address):
