@@ -23,6 +23,7 @@ def movr(instruction):
             return "ERROR: INVALID REGISTER CODE"
     
         list[0].value=list[1].value
+        return f'{MOVR}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
         
 def div(instruction):
     list = instruction.split()
