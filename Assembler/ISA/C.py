@@ -1,5 +1,10 @@
 from . import Constants as Const
 
+MOVR=Const.Opcode(0b00011)
+DIV=Const.Opcode(0b00111)
+INV=Const.Opcode(0b01101)
+COMP=Const.Opcode(0b01110)
+
 def movr(instruction):
     list = instruction.split()
     if "FLAGS" in list:
