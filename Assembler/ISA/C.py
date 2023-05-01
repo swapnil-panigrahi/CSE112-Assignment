@@ -50,5 +50,6 @@ def div(instruction):
             Const.R0.value=list[0].value//list[1].value
             Const.R1.value=list[0].value%list[1].value
             
+        return f'{DIV}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
 
             
