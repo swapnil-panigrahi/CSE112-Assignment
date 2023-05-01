@@ -37,7 +37,7 @@ def rs(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            list=[eval("Const."+i) for i in list[1:]]
+            list=[eval("Const."+i) for i in list[1:2]]
         except:
             return "ERROR: INVALID REGISTER CODE"
     
