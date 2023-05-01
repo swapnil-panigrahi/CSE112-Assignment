@@ -1,6 +1,7 @@
 from . import Constants as Const
 
 LOAD=Const.Opcode(0b00100)
+STORE = Const.Opcode(0b00101)
 
 def var(instruction):
     list=instruction.split()
@@ -37,10 +38,34 @@ def load(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            t = [eval("Const."+i) for i in list[1:2]]
+            t = eval("Const."+list[1])
         except:
             return "ERROR: INVALID REGISTER CODE"
         for i in Const.Mem:
             if i.var == list[2]:
+                t.value = i.value
                 return f'{LOAD}_0_{t.__repr__()}_{i.__repr__()}'
+        return "ERROR: USE OF NOT DECLARED VARIABLE"
+    
+def store(instruction):
+    list = instruction.split()
+
+    if "FLAGS" in list:
+        return "ERROR: FLAGS CANNOT BE AN OPERAND HERE"
+    if len(list) > 3:
+        return "ERROR: MORE THAN ONE OPERAND GIVEN"
+    if len(list) < 3:
+        return "ERROR: INCOMPLETE INSTRUCTION"
+    
+    if list[0] != "st":
+        return "ERROR: ILLEGAL ARGUMENT"
+    else:
+        try:
+            t = eval("Const."+list[1])
+        except:
+            return "ERROR: INVALID REGISTER CODE"
+        for i in Const.Mem:
+            if i.var == list[2]:
+                i.value = t.value
+                return f'{STORE}_0_{t.__repr__()}_{i.__repr__()}'
         return "ERROR: USE OF NOT DECLARED VARIABLE"
