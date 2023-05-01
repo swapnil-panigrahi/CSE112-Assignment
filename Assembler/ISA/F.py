@@ -1,4 +1,4 @@
 from . import Constants as Const
 
 def hlt(instruction):
-    pass
+    return "11010_00000000000"
