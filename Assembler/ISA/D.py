@@ -34,4 +34,13 @@ def load(instruction):
         return "ERROR: INCOMPLETE INSTRUCTION"
     
     if list[0] != "ld":
-        pass
+        return "ERROR: ILLEGAL ARGUMENT"
+    else:
+        try:
+            t = [eval("Const."+i) for i in list[1:2]]
+        except:
+            return "ERROR: INVALID REGISTER CODE"
+        for i in Const.Mem:
+            if i.var == list[2]:
+                return f'{LOAD}_0_{t.__repr__()}_{i.__repr__()}'
+        return "ERROR: USE OF NOT DECLARED VARIABLE"
