@@ -17,12 +17,12 @@ def movi(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            list=[eval("Const."+i) for i in list[1:]]
+            reg=eval("Const."+list[1])
         except:
             return "ERROR: INVALID REGISTER CODE"
     
-        list[0].value=list[1].value
-        return f'{MOVI}_0_{list[0].__repr__()}_{bin(list[1])[2:].zfill(7)}'
+        reg.value=list[2][1:].value
+        return f'{MOVI}_0_{reg.__repr__()}_'+str(bin(list[2][1:])[2:].zfill(7))
         
 def right_shift(instruction):
     list = instruction.split()
@@ -37,7 +37,7 @@ def right_shift(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            list=[eval("Const."+i) for i in list[1:]]
+            reg=eval("Const."+list[1])
         except:
             return "ERROR: INVALID REGISTER CODE"
     
@@ -57,7 +57,7 @@ def left_shift(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            list=[eval("Const."+i) for i in list[1:]]
+            reg=eval("Const."+list[1])
         except:
             return "ERROR: INVALID REGISTER CODE"
     
