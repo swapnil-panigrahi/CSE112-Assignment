@@ -61,7 +61,7 @@ def inv(instruction):
     if len(list) < 3:
         return "ERROR: INCOMPLETE INSTRUCTION"
     
-    if list[0] != "mov":
+    if list[0] != "not":
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
@@ -72,4 +72,27 @@ def inv(instruction):
         list[0].value=~(list[1].value)
         return f'{NOT}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
 
-            
+def comp(instruction):
+    list = instruction.split()
+    if "FLAGS" in list:
+        return "ERROR: FLAGS CANNOT BE AN OPERAND HERE"
+    if len(list) > 3:
+        return "ERROR: MORE THAN THREE OPERANDS GIVEN"
+    if len(list) < 3:
+        return "ERROR: INCOMPLETE INSTRUCTION"
+    
+    if list[0] != "not":
+        return "ERROR: ILLEGAL ARGUMENT"
+    else:
+        try:
+            list=[eval("Const."+i) for i in list[1:]]
+        except:
+            return "ERROR: INVALID REGISTER CODE"
+    
+        if(list[0].value>list[1].value):
+            Const.FLAG.greater_than()
+        elif(list[0].value<list[1].value):
+            Const.FLAG.less_than()
+        else:
+            Const.FLAG.equal()
+        return f'{NOT}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
