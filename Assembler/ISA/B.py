@@ -37,12 +37,13 @@ def right_shift(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            reg=eval("Const."+list[1])
+            list[1]=eval("Const."+list[1])
+            list[2]=int(list[2][1:])
         except:
             return "ERROR: INVALID REGISTER CODE"
     
-        list[0].value=list[0].value << int(list[1].value)
-        return f'{RIGHT_S}_0_{list[0].__repr__()}_{bin(list[1])[2:].zfill(7)}'
+        list[1].value=list[1].value << list[2]
+        return f'{RIGHT_S}_0_{list[1].__repr__()}_{bin(list[2])[2:].zfill(7)}'
 
 def left_shift(instruction):
     list = instruction.split()
@@ -57,10 +58,11 @@ def left_shift(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            reg=eval("Const."+list[1])
+            list[1]=eval("Const."+list[1])
+            list[2]=int(list[2][1:])
         except:
             return "ERROR: INVALID REGISTER CODE"
     
-        list[0].value=list[0].value >> int(list[1].value)
-        return f'{LEFT_S}_0_{list[0].__repr__()}_{bin(list[1])[2:].zfill(7)}'
+        list[1].value=list[1].value >> list[2]
+        return f'{RIGHT_S}_0_{list[1].__repr__()}_{bin(list[2])[2:].zfill(7)}'
     
