@@ -42,8 +42,7 @@ class Flag(Register):
     
     def equal(self):
         self.value |= 0b0000_0000_0000_0001
-
-    
+        
 R0=Register(0b000)
 R1=Register(0b001)
 R2=Register(0b010)
