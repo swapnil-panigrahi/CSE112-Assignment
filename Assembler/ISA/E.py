@@ -22,4 +22,4 @@ class Branch:
     
     def function(self,instruction):
         return self,instruction
-
+    

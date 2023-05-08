@@ -9,15 +9,10 @@ from ISA import F
 for i in Const.Reg:
     print(i.__repr__())
 
-Const.R0.value=0b0000_0000_0000_0000
-Const.R1.value=0b0000_0000_0000_0111
-Const.R2.value=0b0000_0000_0000_0011
-
-print(B.right_shift("rs R0 $10"))
-print(Const.R0)
+print(A.add("add R1 R2 R3"))
+print(A.sub("sub R1 R2 R3"))
+print(B.movi("mov R1 $12"))
+print(C.movr("mov R1 R2"))
 print(D.var("var xyz"))
-
-B1=E.Branch("label1")
-B1.function(["add R0 R1 R2"])
-
-print(Const.R0)
+print(D.load("ld R1 xyz"))
+print(D.store("st R2 xyz"))

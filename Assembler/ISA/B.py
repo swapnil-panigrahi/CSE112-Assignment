@@ -17,12 +17,12 @@ def movi(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
-            reg=eval("Const."+list[1])
+            list[1]=eval("Const."+list[1])
+            list[2]=int(list[2][1:])
         except:
             return "ERROR: INVALID REGISTER CODE"
     
-        reg.value=list[2][1:].value
-        return f'{MOVI}_0_{reg.__repr__()}_'+str(bin(list[2][1:])[2:].zfill(7))
+        return f'{MOVI}_0_{list[1].__repr__()}_{bin(list[2])[2:].zfill(7)}'
         
 def right_shift(instruction):
     list = instruction.split()
