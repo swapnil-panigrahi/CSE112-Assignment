@@ -17,7 +17,7 @@ class Branch:
             self.address=0b000_0000
     
     def __repr__(self):
-        return self.address
+        return f'{bin(self.address)[2:].zfill(7)}'
     
     def __str__(self):
         return self.label
@@ -39,9 +39,10 @@ def uncon_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in br_var:
-            br_var.append(list[1])
-        return f'{UNCON_JUMP}_0000_{list[1].___repr__}'
+        if list[1].label not in br_var:
+            br_var.append(list[1].label)
+            
+        return f'{UNCON_JUMP}_0000_{list[1].__repr__()}'
     
 def less_jmp(instruction):
     list = instruction.split()
@@ -57,9 +58,10 @@ def less_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in br_var:
-            br_var.append(list[1])
-        return f'{JUMP_LESS}_0000_{list[1].___repr__}'
+        if list[1].label not in br_var:
+            br_var.append(list[1].label)
+
+        return f'{JUMP_LESS}_0000_{list[1].__repr__()}'
     
 def greater_jmp(instruction):
     list = instruction.split()
@@ -75,9 +77,10 @@ def greater_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in br_var:
-            br_var.append(list[1])
-        return f'{JUMP_GREAT}_0000_{list[1].___repr__}'
+        if list[1].label not in br_var:
+            br_var.append(list[1].label)
+
+        return f'{JUMP_GREAT}_0000_{list[1].__repr__()}'
     
 def equal_jmp(instruction):
     list = instruction.split()
@@ -93,6 +96,7 @@ def equal_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in br_var:
-            br_var.append(list[1])
-        return f'{JUMP_EQUAL}_0000_{list[1].___repr__}'
+        if list[1].label not in br_var:
+            br_var.append(list[1].label)
+
+        return f'{JUMP_EQUAL}_0000_{list[1].__repr__()}'
