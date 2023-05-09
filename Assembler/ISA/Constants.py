@@ -56,3 +56,5 @@ FLAG=Flag(0b111)
 Reg=[R0,R1,R2,R3,R4,R5,R6,FLAG]
 
 Mem=[]
+
+Instructions=['add','sub','mov','ld','str','mul','div','rs','ls','xor','or','and','not','cmp','jmp','jlt','jgt','je','hlt']
