@@ -5,7 +5,7 @@ JUMP_LESS = Const.Opcode(0b11100)
 JUMP_GREAT = Const.Opcode(0b11101)
 JUMP_EQUAL = Const.Opcode(0b11111)
 
-branch = []
+br_var = []
 
 class Branch:
     def __init__(self,label):
@@ -39,8 +39,8 @@ def uncon_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in branch:
-            branch.append(list[1])
+        if list[1] not in br_var:
+            br_var.append(list[1])
         return f'{UNCON_JUMP}_0000_{list[1].___repr__}'
     
 def less_jmp(instruction):
@@ -57,8 +57,8 @@ def less_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in branch:
-            branch.append(list[1])
+        if list[1] not in br_var:
+            br_var.append(list[1])
         return f'{JUMP_LESS}_0000_{list[1].___repr__}'
     
 def less_jmp(instruction):
@@ -75,8 +75,8 @@ def less_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in branch:
-            branch.append(list[1])
+        if list[1] not in br_var:
+            br_var.append(list[1])
         return f'{JUMP_GREAT}_0000_{list[1].___repr__}'
     
 def less_jmp(instruction):
@@ -93,6 +93,6 @@ def less_jmp(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         list[1] = Branch(list[1])
-        if list[1] not in branch:
-            branch.append(list[1])
+        if list[1] not in br_var:
+            br_var.append(list[1])
         return f'{JUMP_EQUAL}_0000_{list[1].___repr__}'
