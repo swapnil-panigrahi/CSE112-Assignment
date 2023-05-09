@@ -61,7 +61,7 @@ def less_jmp(instruction):
             br_var.append(list[1])
         return f'{JUMP_LESS}_0000_{list[1].___repr__}'
     
-def less_jmp(instruction):
+def greater_jmp(instruction):
     list = instruction.split()
     
     if "FLAGS" in list:
@@ -79,7 +79,7 @@ def less_jmp(instruction):
             br_var.append(list[1])
         return f'{JUMP_GREAT}_0000_{list[1].___repr__}'
     
-def less_jmp(instruction):
+def equal_jmp(instruction):
     list = instruction.split()
     
     if "FLAGS" in list:
