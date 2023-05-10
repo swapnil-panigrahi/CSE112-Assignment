@@ -67,6 +67,10 @@ for i in test_files:
     files=os.listdir(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}')
     
     try:
+        os.mkdir(f'{cwd}/CSE112-Assignment/Assembler/tests/output_cases')
+    except:
+        pass
+    try:
         os.mkdir(f'{cwd}/CSE112-Assignment/Assembler/tests/output_cases/{i}')
     except:
         pass
@@ -75,6 +79,7 @@ for i in test_files:
         with open(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j}') as test_case:
             instr_list=test_case.readlines()
             if 'hlt' in instr_list[0]:
+                print("ERROR: 'hlt' CAN'T BE THE FIRST INSTRUCTION")
                 break
             
             bin_return=[]
