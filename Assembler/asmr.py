@@ -1,3 +1,5 @@
+import os
+import time
 from ISA import Constants as Const
 from ISA import A
 from ISA import B
@@ -34,13 +36,13 @@ def instruction_decode(instruction):
             return C.div(instruction.strip())
         elif instr=='not':
             return C.inv(instruction.strip())
-        elif instr=='comp':
+        elif instr=='cmp':
             return C.comp(instruction.strip())
         elif instr=='var':
             return D.var(instruction.strip())
-        elif instr=='load':
+        elif instr=='ld':
             return D.load(instruction.strip())
-        elif instr=='store':
+        elif instr=='st':
             return D.store(instruction.strip())
         elif instr=='jmp':
             return E.uncon_jmp(instruction.strip())
@@ -61,5 +63,33 @@ def instruction_decode(instruction):
 
 test_file = open(r'Assembler/tests/errorGen/test1', "r")
 instr_list=test_file.readlines()
-for i in instr_list:
-    print(instruction_decode(i.strip()))
+# for i in instr_list:
+#     print(instruction_decode(i.strip()))
+
+errorgen_files=os.listdir("D:\CSE112-Assignment\Assembler\\tests\errorGen")
+hardbin_files=os.listdir("D:\CSE112-Assignment\Assembler\\tests\hardBin")
+simplebin_files=os.listdir("D:\CSE112-Assignment\Assembler\\tests\simpleBin")
+
+for i in errorgen_files:
+    f=open(f"D:\CSE112-Assignment\Assembler\\tests\errorGen\{i}", "r")
+    for j in f:
+        if j=="\n":
+            pass
+        else:
+            print(instruction_decode(j))
+
+for i in hardbin_files:
+    f=open(f"D:\CSE112-Assignment\Assembler\\tests\hardBin\{i}", "r")
+    for j in f:
+        if j=="\n":
+            pass
+        else:
+            print(instruction_decode(j))
+
+for i in simplebin_files:
+    f=open(f"D:\CSE112-Assignment\Assembler\\tests\simpleBin\{i}", "r")
+    for j in f:
+        if j=="\n":
+            pass
+        else:
+            print(j, instruction_decode(j))

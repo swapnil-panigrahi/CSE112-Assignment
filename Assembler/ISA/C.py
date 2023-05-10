@@ -81,7 +81,7 @@ def comp(instruction):
     if len(list) < 3:
         return "ERROR: INCOMPLETE INSTRUCTION"
     
-    if list[0] != "not":
+    if list[0] != "cmp":
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:

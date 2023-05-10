@@ -20,7 +20,8 @@ def var(instruction):
             list[1]=Const.Memory(list[1],0b0000_0000_0000_0000)
             Const.Mem.append(list[1])
         else:
-            list[1]=Const.Memory(Const.Mem[-1]+0b1)
+            list[1]=Const.Memory(list[1],Const.Mem[-1].address+0b1)
+            Const.Mem.append(list[1])
             
         #return f'{list[1].__repr__()}' 
 

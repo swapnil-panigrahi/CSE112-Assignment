@@ -54,7 +54,7 @@ def left_shift(instruction):
     if len(list) < 3:
         return "ERROR: INCOMPLETE INSTRUCTION"
     
-    if list[0] != "rs":
+    if list[0] != "ls":
         return "ERROR: ILLEGAL ARGUMENT"
     else:
         try:
