@@ -78,8 +78,13 @@ for i in test_files:
     for j in files:
         with open(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j}') as test_case:
             instr_list=test_case.readlines()
+            instr_list=[i for i in instr_list if i.strip()]
+            
+            Const.Mem_block=[i for i in range(len(instr_list))]
+            instr_addr=Const.Mem_block[-1] if Const.Mem else 0
+             
             if 'hlt' in instr_list[0]:
-                print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} Line 0: {instr_list[0].strip()} ERROR: hlt CAN\'T BE THE FIRST INSTRUCTION')
+                print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {bin(0)[2:].zfill(7)}: {instr_list[0].strip()} ERROR: hlt CAN\'T BE THE FIRST INSTRUCTION')
                 continue
             
             bin_return=[]
@@ -89,11 +94,11 @@ for i in test_files:
                     bin_str=instruction_decode(k)
 
                     if bin_str!=None and 'ERROR' not in bin_str:
-                        bin_return.append(bin_str+'\n')
+                        bin_return.append(f'{bin(instr_list.index(k))[2:].zfill(7)}: {bin_str}\n')
                     elif bin_str==None:
                         pass
                     else:
-                        print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} Line {instr_list.index(k)}: {k.strip()} {bin_str}')
+                        print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {bin(instr_list.index(k))[2:].zfill(7)}: {k.strip()} {bin_str}')
                         break            
             
             else:

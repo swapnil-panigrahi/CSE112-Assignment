@@ -16,12 +16,10 @@ def var(instruction):
     if list[0]!="var":
         return "ERROR: ILLEGAL ARGUMENT"
     else:        
-        if not(Const.Mem):
-            list[1]=Const.Memory(list[1],0b000_0000)
-            Const.Mem.append(list[1])
-        else:
-            list[1]=Const.Memory(list[1],Const.Mem[-1].address+0b1)
-            Const.Mem.append(list[1])
+        list[1]=Const.Memory(list[1],0b000_0000)
+        Const.Mem[list[1].var]=list[1].address
+        
+        Const.Mem_block.append(list[1].address)
             
         #return f'{list[1].__repr__()}' 
 

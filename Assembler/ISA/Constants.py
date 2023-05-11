@@ -10,16 +10,20 @@ class Register:
         return f'{bin(self.value)[2:].zfill(16)}'
     
 class Memory:
-    def __init__(self,var,address):
+    def __init__(self,var,value):
         self.var=var
-        self.address=address
-        self.value=0b000_0000
+        self.value=value        
         
+        if Mem_block:
+            self.address=Mem_block[-1]+0b1
+        else:
+            self.address=0b000_0000
+
     def __repr__(self):
-        return f'{bin(self.address)[2:].zfill(7)}'
+        return f'{bin(self.value)[2:].zfill(7)}'
     
     def __str__(self):
-        return f'{bin(self.value)[2:].zfill(7)}'
+        return f'{bin(self.address)[2:].zfill(7)}'
 class Opcode:
     def __init__(self,opcode):
         self.opcode=opcode
@@ -55,6 +59,7 @@ FLAG=Flag(0b111)
 
 Reg=[R0,R1,R2,R3,R4,R5,R6,FLAG]
 
-Mem=[]
+Mem_block=[]
+Mem={}
 
 Instructions=['var','add','sub','mov','ld','str','mul','div','rs','ls','xor','or','and','not','cmp','jmp','jlt','jgt','je','hlt']

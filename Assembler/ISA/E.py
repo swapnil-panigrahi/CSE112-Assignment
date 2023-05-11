@@ -7,15 +7,18 @@ JUMP_EQUAL = Const.Opcode(0b11111)
 
 br_var = []
 
-class Branch:
+class Branch():
     def __init__(self,label):
         self.label=label
         
-        if not Const.Mem:
-            self.address=Const.Mem[-1]+0b1
+        if not Const.Mem_block:
+            self.address=Const.Mem_block[-1]+0b1
         else:
             self.address=0b000_0000
-    
+        
+        Const.Mem_block.append(self.address)
+        Const.Mem[self.label]=self.address
+        
     def __repr__(self):
         return f'{bin(self.address)[2:].zfill(7)}'
     
