@@ -1,3 +1,3 @@
 #!/bin/bash
 # Add command to run your program here
-python3 Assembler.py $@
+py CSE112-Assignment/Assembler/Assembler.py $@

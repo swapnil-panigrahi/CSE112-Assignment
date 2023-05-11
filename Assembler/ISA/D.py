@@ -17,7 +17,7 @@ def var(instruction):
         return "ERROR: ILLEGAL ARGUMENT"
     else:        
         if not(Const.Mem):
-            list[1]=Const.Memory(list[1],0b0000_0000_0000_0000)
+            list[1]=Const.Memory(list[1],0b000_0000)
             Const.Mem.append(list[1])
         else:
             list[1]=Const.Memory(list[1],Const.Mem[-1].address+0b1)

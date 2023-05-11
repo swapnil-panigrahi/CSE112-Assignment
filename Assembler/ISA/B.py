@@ -19,8 +19,11 @@ def movi(instruction):
         try:
             list[1]=eval("Const."+list[1])
             list[2]=int(list[2][1:])
+            
+            if list[2]>127 or list[2]<0:
+                return "ERROR: GIVEN VALUE HAS MORE THAN 7 BITS OR IS NEGATIVE"
         except:
-            return "ERROR: INVALID REGISTER CODE"
+            return "ERROR: INVALID REGISTER CODE OR IMMEDIATE VALUE IS NOT AN INTEGER"
     
         return f'{MOVI}_0_{list[1].__repr__()}_{bin(list[2])[2:].zfill(7)}'
         
