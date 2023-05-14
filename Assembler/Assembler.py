@@ -59,7 +59,7 @@ def instruction_decode(instruction):
                     Branch=E.Branch(instruction.split()[0].strip(':')).label
                     E.br_var.append(Branch)
                 
-                for j in instruction.split(': ')[1:]:
+                for j in instruction.split(':')[1:]:
                     return instruction_decode(j.strip())
             elif instr_header not in E.br_var:
                 return 'ERROR: INVALID INSTRUCTION OR BRANCH PASSED'            
