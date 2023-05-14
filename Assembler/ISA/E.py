@@ -7,11 +7,12 @@ JUMP_EQUAL = Const.Opcode(0b11111)
 
 br_var = []
 
+#Jump to branch still to be implemented     
 class Branch():
     def __init__(self,label):
         self.label=label
         
-        if not Const.Mem_block:
+        if Const.Mem_block:
             self.address=Const.Mem_block[-1]+0b1
         else:
             self.address=0b000_0000
@@ -27,7 +28,7 @@ class Branch():
     
     def function(self,instruction):
         return self,instruction
-    
+
 def uncon_jmp(instruction):
     list = instruction.split()
     
@@ -41,11 +42,12 @@ def uncon_jmp(instruction):
     if list[0] != "jmp":
         return "ERROR: ILLEGAL ARGUMENT"
     else:
-        list[1] = Branch(list[1])
-        if list[1].label not in br_var:
-            br_var.append(list[1].label)
-            
-        return f'{UNCON_JUMP}_0000_{list[1].__repr__()}'
+        if list[1] not in br_var:
+            return "ERROR: BRANCH NOT DEFINED"
+        
+        for i in Const.Mem:
+            if i==list[1]: 
+                return f'{UNCON_JUMP}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'
     
 def less_jmp(instruction):
     list = instruction.split()
@@ -60,11 +62,12 @@ def less_jmp(instruction):
     if list[0] != "jlt":
         return "ERROR: ILLEGAL ARGUMENT"
     else:
-        list[1] = Branch(list[1])
-        if list[1].label not in br_var:
-            br_var.append(list[1].label)
-
-        return f'{JUMP_LESS}_0000_{list[1].__repr__()}'
+        if list[1] not in br_var:
+            return "ERROR: BRANCH NOT DEFINED"
+        
+        for i in Const.Mem:
+            if i==list[1]: 
+                return f'{UNCON_JUMP}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'
     
 def greater_jmp(instruction):
     list = instruction.split()
@@ -79,11 +82,12 @@ def greater_jmp(instruction):
     if list[0] != "jgt":
         return "ERROR: ILLEGAL ARGUMENT"
     else:
-        list[1] = Branch(list[1])
-        if list[1].label not in br_var:
-            br_var.append(list[1].label)
+        if list[1] not in br_var:
+            return "ERROR: BRANCH NOT DEFINED"
 
-        return f'{JUMP_GREAT}_0000_{list[1].__repr__()}'
+        for i in Const.Mem:
+            if i==list[1]: 
+                return f'{UNCON_JUMP}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'
     
 def equal_jmp(instruction):
     list = instruction.split()
@@ -98,8 +102,9 @@ def equal_jmp(instruction):
     if list[0] != "je":
         return "ERROR: ILLEGAL ARGUMENT"
     else:
-        list[1] = Branch(list[1])
-        if list[1].label not in br_var:
-            br_var.append(list[1].label)
+        if list[1] not in br_var:
+            return "ERROR: BRANCH NOT DEFINED"
 
-        return f'{JUMP_EQUAL}_0000_{list[1].__repr__()}'
+        for i in Const.Mem:
+            if i==list[1]: 
+                return f'{UNCON_JUMP}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'

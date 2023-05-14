@@ -1,4 +1,5 @@
 from . import Constants as Const
+from . import E
 
 LOAD=Const.Opcode(0b00100)
 STORE = Const.Opcode(0b00101)
@@ -41,7 +42,7 @@ def load(instruction):
         except:
             return "ERROR: INVALID REGISTER CODE"
         for i in Const.Mem:
-            if i == list[2]:
+            if i == list[2] and i not in E.br_var:
                 t.value = Const.Mem[i]
                 return f'{LOAD}_0_{t.__repr__()}_{i.__repr__()}'
         return "ERROR: USE OF NOT DECLARED VARIABLE"
@@ -64,7 +65,7 @@ def store(instruction):
         except:
             return "ERROR: INVALID REGISTER CODE"
         for i in Const.Mem:
-            if i == list[2]:
+            if i == list[2] and i not in E.br_var:
                 Const.Mem[i] = t.value
                 return f'{STORE}_0_{t.__repr__()}_{i.__repr__()}'
         return "ERROR: USE OF NOT DECLARED VARIABLE"

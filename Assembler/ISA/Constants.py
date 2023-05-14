@@ -55,9 +55,9 @@ R4=Register(0b100)
 R5=Register(0b101)
 R6=Register(0b110)
 
-FLAG=Flag(0b111)
+FLAGS=Flag(0b111)
 
-Reg=[R0,R1,R2,R3,R4,R5,R6,FLAG]
+Reg=[R0,R1,R2,R3,R4,R5,R6,FLAGS]
 
 Mem_block=[]
 Mem={}

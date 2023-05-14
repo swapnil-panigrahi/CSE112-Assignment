@@ -7,7 +7,7 @@ COMP=Const.Opcode(0b01110)
 
 def movr(instruction):
     list = instruction.split()
-    if "FLAGS" in list:
+    if "FLAGS" in list and not list[2]=="FLAGS":
         return "ERROR: FLAGS CANNOT BE AN OPERAND HERE"
     if len(list) > 3:
         return "ERROR: MORE THAN THREE OPERANDS GIVEN"
@@ -45,7 +45,7 @@ def div(instruction):
         if list[1].value == 0b0000_0000_0000_0000:
             Const.R0.value=0b0000_0000_0000_0000
             Const.R1.value=0b0000_0000_0000_0000
-            Const.FLAG.overflow()
+            Const.FLAGS.overflow()
         else:
             Const.R0.value=list[0].value//list[1].value
             Const.R1.value=list[0].value%list[1].value
@@ -90,9 +90,9 @@ def comp(instruction):
             return "ERROR: INVALID REGISTER CODE"
     
         if(list[0].value>list[1].value):
-            Const.FLAG.greater_than()
+            Const.FLAGS.greater_than()
         elif(list[0].value<list[1].value):
-            Const.FLAG.less_than()
+            Const.FLAGS.less_than()
         else:
-            Const.FLAG.equal()
+            Const.FLAGS.equal()
         return f'{NOT}_00000_{list[0].__repr__()}_{list[1].__repr__()}'

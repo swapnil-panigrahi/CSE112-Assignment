@@ -26,9 +26,9 @@ def add(instruction):
     
         list[0].value=list[1].value+list[2].value
             
-        if list[0].value > 0b1111_1111_1111_1111:
+        if list[0].value >= 0b0000_0000_1000_0000:
             list[0].value = 0b0000_0000_0000_0000
-            Const.FLAG.overflow()
+            Const.FLAGS.overflow()
             
         return f'{ADD}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
                 
@@ -53,7 +53,7 @@ def sub(instruction):
             
             if list[0].value < 0b0000_0000_0000_0000:
                 list[0].value = 0b0000_0000_0000_0000
-                Const.FLAG.overflow()
+                Const.FLAGS.overflow()
                 
         return f'{SUB}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
 
@@ -76,9 +76,9 @@ def mul(instruction):
         else:
             list[0].value=list[1].value*list[2].value
             
-            if list[0].value > 0b1111_1111_1111_1111:
+            if list[0].value >= 0b0000_0000_1000_0000:
                 list[0].value = 0b0000_0000_0000_0000
-                Const.FLAG.overflow()
+                Const.FLAGS.overflow()
                 
         return f'{MUL}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
 
