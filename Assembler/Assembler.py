@@ -138,7 +138,7 @@ for i in test_files:
                         break
             else:
                 if end_count==0:
-                    print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {bin(instr_list.index(k))[2:].zfill(7)}: {k.strip()} {"ERROR: hlt NOT DEFINED"}')
+                    print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {bin(instr_list.index(k))[2:].zfill(7)}: {k.strip()} {"ERROR: hlt NOT DECLARED"}')
                 else:
                     output_case=open(f'{cwd}/CSE112-Assignment/Assembler/tests/output_cases/{i}/{j}.txt',"w")
                         
