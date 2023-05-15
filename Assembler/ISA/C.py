@@ -23,7 +23,7 @@ def movr(instruction):
             return "ERROR: INVALID REGISTER CODE"
     
         list[0].value=list[1].value
-        return f'{MOVR}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
+        return f'{MOVR}00000{list[0].__repr__()}{list[1].__repr__()}'
         
 def div(instruction):
     list = instruction.split()
@@ -50,7 +50,7 @@ def div(instruction):
             Const.R0.value=list[0].value//list[1].value
             Const.R1.value=list[0].value%list[1].value
             
-        return f'{DIV}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
+        return f'{DIV}00000{list[0].__repr__()}{list[1].__repr__()}'
     
 def inv(instruction):
     list = instruction.split()
@@ -70,7 +70,7 @@ def inv(instruction):
             return "ERROR: INVALID REGISTER CODE"
     
         list[0].value=~(list[1].value)
-        return f'{NOT}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
+        return f'{NOT}00000{list[0].__repr__()}{list[1].__repr__()}'
 
 def comp(instruction):
     list = instruction.split()
@@ -95,4 +95,4 @@ def comp(instruction):
             Const.FLAGS.less_than()
         else:
             Const.FLAGS.equal()
-        return f'{NOT}_00000_{list[0].__repr__()}_{list[1].__repr__()}'
+        return f'{COMP}00000{list[0].__repr__()}{list[1].__repr__()}'

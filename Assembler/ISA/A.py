@@ -26,11 +26,11 @@ def add(instruction):
     
         list[0].value=list[1].value+list[2].value
             
-        if list[0].value >= 0b0000_0000_1000_0000:
-            list[0].value = 0b0000_0000_0000_0000
+        if list[0].value >= 0b0000000010000000:
+            list[0].value = 0b0000000000000000
             Const.FLAGS.overflow()
             
-        return f'{ADD}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
+        return f'{ADD}00{list[0].__repr__()}{list[1].__repr__()}{list[2].__repr__()}'
                 
 def sub(instruction):
     list = instruction.split()
@@ -51,11 +51,11 @@ def sub(instruction):
         else:
             list[0].value=list[1].value-list[2].value
             
-            if list[0].value < 0b0000_0000_0000_0000:
-                list[0].value = 0b0000_0000_0000_0000
+            if list[0].value < 0b0000000000000000:
+                list[0].value = 0b0000000000000000
                 Const.FLAGS.overflow()
                 
-        return f'{SUB}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
+        return f'{SUB}00{list[0].__repr__()}{list[1].__repr__()}{list[2].__repr__()}'
 
 def mul(instruction):
     list = instruction.split()
@@ -76,11 +76,11 @@ def mul(instruction):
         else:
             list[0].value=list[1].value*list[2].value
             
-            if list[0].value >= 0b0000_0000_1000_0000:
-                list[0].value = 0b0000_0000_0000_0000
+            if list[0].value >= 0b0000000010000000:
+                list[0].value = 0b0000000000000000
                 Const.FLAGS.overflow()
                 
-        return f'{MUL}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
+        return f'{MUL}00{list[0].__repr__()}{list[1].__repr__()}{list[2].__repr__()}'
 
 def xor(instruction):
     list = instruction.split()
@@ -101,7 +101,7 @@ def xor(instruction):
         else:
             list[0].value = list[1].value ^ list[2].value
             
-    return f'{XOR}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
+    return f'{XOR}00{list[0].__repr__()}{list[1].__repr__()}{list[2].__repr__()}'
             
 def _or_(instruction):
     list = instruction.split()
@@ -122,7 +122,7 @@ def _or_(instruction):
         else:
             list[0].value = list[1].value | list[2].value
     
-    return f'{OR}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
+    return f'{OR}00{list[0].__repr__()}{list[1].__repr__()}{list[2].__repr__()}'
             
 def _and_(instruction):
     list = instruction.split()
@@ -143,4 +143,4 @@ def _and_(instruction):
         else:
             list[0].value = list[1].value & list[2].value
             
-    return f'{AND}_00_{list[0].__repr__()}_{list[1].__repr__()}_{list[2].__repr__()}'
+    return f'{AND}00{list[0].__repr__()}{list[1].__repr__()}{list[2].__repr__()}'

@@ -25,7 +25,7 @@ def movi(instruction):
         except:
             return "ERROR: INVALID REGISTER CODE OR IMMEDIATE VALUE IS NOT AN INTEGER"
     
-        return f'{MOVI}_0_{list[1].__repr__()}_{bin(list[2])[2:].zfill(7)}'
+        return f'{MOVI}0{list[1].__repr__()}{bin(list[2])[2:].zfill(7)}'
         
 def right_shift(instruction):
     list = instruction.split()
@@ -46,7 +46,7 @@ def right_shift(instruction):
             return "ERROR: INVALID REGISTER CODE"
     
         list[1].value=list[1].value << list[2]
-        return f'{RIGHT_S}_0_{list[1].__repr__()}_{bin(list[2])[2:].zfill(7)}'
+        return f'{RIGHT_S}0{list[1].__repr__()}{bin(list[2])[2:].zfill(7)}'
 
 def left_shift(instruction):
     list = instruction.split()
@@ -67,5 +67,5 @@ def left_shift(instruction):
             return "ERROR: INVALID REGISTER CODE"
     
         list[1].value=list[1].value >> list[2]
-        return f'{RIGHT_S}_0_{list[1].__repr__()}_{bin(list[2])[2:].zfill(7)}'
+        return f'{LEFT_S}0{list[1].__repr__()}{bin(list[2])[2:].zfill(7)}'
     

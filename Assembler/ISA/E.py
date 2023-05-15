@@ -47,7 +47,7 @@ def uncon_jmp(instruction):
         
         for i in Const.Mem:
             if i==list[1]: 
-                return f'{UNCON_JUMP}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'
+                return f'{UNCON_JUMP}0000{bin(Const.Mem[i])[2:].zfill(7)}'
     
 def less_jmp(instruction):
     list = instruction.split()
@@ -67,7 +67,7 @@ def less_jmp(instruction):
         
         for i in Const.Mem:
             if i==list[1]: 
-                return f'{JUMP_LESS}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'
+                return f'{JUMP_LESS}0000{bin(Const.Mem[i])[2:].zfill(7)}'
     
 def greater_jmp(instruction):
     list = instruction.split()
@@ -87,7 +87,7 @@ def greater_jmp(instruction):
 
         for i in Const.Mem:
             if i==list[1]: 
-                return f'{JUMP_GREAT}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'
+                return f'{JUMP_GREAT}0000{bin(Const.Mem[i])[2:].zfill(7)}'
     
 def equal_jmp(instruction):
     list = instruction.split()
@@ -107,4 +107,4 @@ def equal_jmp(instruction):
 
         for i in Const.Mem:
             if i==list[1]: 
-                return f'{JUMP_EQUAL}_0000_{bin(Const.Mem[i])[2:].zfill(7)}'
+                return f'{JUMP_EQUAL}0000{bin(Const.Mem[i])[2:].zfill(7)}'

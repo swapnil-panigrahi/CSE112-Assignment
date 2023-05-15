@@ -44,7 +44,7 @@ def load(instruction):
         for i in Const.Mem:
             if i == list[2] and i not in E.br_var:
                 t.value = Const.Mem[i]
-                return f'{LOAD}_0_{t.__repr__()}_{bin(abs(Const.Mem[i]))[2:].zfill(7)}'
+                return f'{LOAD}0{t.__repr__()}{bin(abs(Const.Mem[i]))[2:].zfill(7)}'
         return "ERROR: USE OF NOT DECLARED VARIABLE"
     
 def store(instruction):
@@ -67,5 +67,5 @@ def store(instruction):
         for i in Const.Mem:
             if i == list[2] and i not in E.br_var:
                 #Const.Mem[i] = t.value
-                return f'{STORE}_0_{t.__repr__()}_{bin(abs(Const.Mem[i]))[2:].zfill(7)}'
+                return f'{STORE}0{t.__repr__()}{bin(abs(Const.Mem[i]))[2:].zfill(7)}'
         return "ERROR: USE OF NOT DECLARED VARIABLE"
