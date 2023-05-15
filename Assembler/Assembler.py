@@ -54,15 +54,7 @@ def instruction_decode(instruction):
         elif instr_header=='hlt':
             return F.hlt(instruction.strip())
         else:
-            if ":" in instruction:
-                if instruction.split()[0].strip(":") not in E.br_var:
-                    Branch=E.Branch(instruction.split()[0].strip(':')).label
-                    E.br_var.append(Branch)
-                
-                for j in instruction.split(':')[1:]:
-                    return instruction_decode(j.strip())
-            elif instr_header not in E.br_var:
-                return 'ERROR: INVALID INSTRUCTION OR BRANCH PASSED'            
+            return 'ERROR: INVALID INSTRUCTION OR BRANCH PASSED'            
 
 cwd=os.getcwd()
 test_files=os.listdir(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases')
@@ -108,9 +100,12 @@ for i in test_files:
                         
                     bin_str=instruction_decode(k)
                     if ':' in k:
-                            for l in Const.Mem:
-                                if l==k.split()[0].strip(':'):
-                                    addr=Const.Mem[l]
+                            E.br_var.append(k.split(':')[0])
+                            Const.Mem[k.split(':')[0]]=instr_list.index(k)
+                            
+                            addr=Const.Mem[k.split(':')[0]]
+                            bin_str=instruction_decode(k.split(":")[1])
+                            
                             bin_return.append(f'{bin(addr)[2:].zfill(7)}: {bin_str}\n')
                                 
                     elif bin_str==None:
@@ -119,12 +114,11 @@ for i in test_files:
                     elif 'BRANCH NOT DEFINED' in bin_str:
                         for l in range(instr_list.index(k)+1,len(instr_list)):
                             if k.split()[1].strip(":") in instr_list[l]:
-                                Branch=E.Branch(instr_list[l].split()[0].strip(':')).label
-                                E.br_var.append(Branch)
-                            
-                                for m in instr_list[l].split(': ')[1:]:
-                                    bin_str = instruction_decode(j.strip())
-                            
+                                E.br_var.append(k.split()[1])
+                                Const.Mem[k.split()[1]]=l
+                                
+                                bin_str=instruction_decode(k)
+                                bin_return.append(f'{bin(instr_list.index(k))[2:].zfill(7)}: {bin_str}\n')
                                 break
                         else:
                             print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {bin(instr_list.index(k))[2:].zfill(7)}: {k.strip()} ERROR: BRANCH NOT DEFINED')

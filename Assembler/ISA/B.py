@@ -20,7 +20,7 @@ def movi(instruction):
             list[1]=eval("Const."+list[1])
             list[2]=int(list[2][1:])
             
-            if list[2]>255 or list[2]<0:
+            if list[2]>127 or list[2]<0:
                 return "ERROR: GIVEN VALUE HAS MORE THAN 7 BITS OR IS NEGATIVE"
         except:
             return "ERROR: INVALID REGISTER CODE OR IMMEDIATE VALUE IS NOT AN INTEGER"

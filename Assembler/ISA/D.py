@@ -66,6 +66,6 @@ def store(instruction):
             return "ERROR: INVALID REGISTER CODE"
         for i in Const.Mem:
             if i == list[2] and i not in E.br_var:
-                Const.Mem[i] = t.value
+                #Const.Mem[i] = t.value
                 return f'{STORE}_0_{t.__repr__()}_{bin(abs(Const.Mem[i]))[2:].zfill(7)}'
         return "ERROR: USE OF NOT DECLARED VARIABLE"
