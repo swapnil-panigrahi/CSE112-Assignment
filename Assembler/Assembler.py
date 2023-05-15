@@ -102,7 +102,7 @@ for i in test_files:
                     if 'hlt' in k:
                         end_count += 1
                         
-                        if end_count > 1:
+                        if end_count > 1 or 'hlt' not in instr_list[-1]:
                             print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {bin(instr_list.index(k))[2:].zfill(7)}: {instr_list[0].strip()} ERROR: hlt CAN ONLY BE THE LAST INSTRUCTION')
                             break
                         
