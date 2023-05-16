@@ -1,4 +1,4 @@
-import os
+import sys
 from ISA import Constants as Const
 from ISA import A
 from ISA import B
@@ -56,30 +56,31 @@ def instruction_decode(instruction):
         else:
             return 'ERROR: INVALID INSTRUCTION OR BRANCH PASSED'            
 
-cwd=os.getcwd()
-test_files=os.listdir(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases')
+# cwd=os.getcwd()
+# test_files=os.listdir(f'{cwd}/Assembler/tests/input_cases')
 
-for i in test_files:
-    files=os.listdir(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}')
+# for i in test_files:
+#     files=os.listdir(f'{cwd}/Assembler/tests/input_cases/{i}')
     
-    try:
-        os.mkdir(f'{cwd}/CSE112-Assignment/Assembler/tests/output_cases')
-    except:
-        pass
-    try:
-        os.mkdir(f'{cwd}/CSE112-Assignment/Assembler/tests/output_cases/{i}')
-    except:
-        pass
+#     try:
+#         os.mkdir(f'{cwd}/Assembler/tests/output_cases')
+#     except:
+#         pass
+#     try:
+#         os.mkdir(f'{cwd}/Assembler/tests/output_cases/{i}')
+#     except:
+#         pass
     
-    for j in files:
-        Const.Mem.clear()
-        Const.Mem_block.clear()
-        E.br_var.clear()
+#     for j in files:
+#         Const.Mem.clear()
+#         Const.Mem_block.clear()
+#         E.br_var.clear()
         
-        with open(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j}') as test_case:
-            instr_list=test_case.readlines()
-            instr_list_var=[i for i in instr_list if i.strip()]
+#         with open(f'{cwd}/Assembler/tests/input_cases/{i}/{j}') as test_case:
+if __name__ == '__main__':        
+            instr_list = sys.stdin.readlines()
             
+            instr_list_var=[i for i in instr_list if i.strip()]
             instr_list.clear()
             for k in instr_list_var:
                 if 'var' not in k.split()[0].strip():
@@ -89,8 +90,7 @@ for i in test_files:
             instr_addr=Const.Mem_block[-1] if Const.Mem else 0
             
             if 'hlt' in instr_list[0] and not len(instr_list)==1:
-                print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {instr_list[0].strip()} ERROR: hlt CAN\'T BE THE FIRST INSTRUCTION')
-                continue
+                print(f'{instr_list[0].strip()} ERROR: hlt CAN\'T BE THE FIRST INSTRUCTION')
                 
             bin_return=[]
             end_count = 0
@@ -100,7 +100,7 @@ for i in test_files:
                         end_count += 1
                         
                         if end_count > 1 or 'hlt' not in instr_list_var[-1]:
-                            print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {instr_list[0].strip()} ERROR: hlt CAN ONLY BE THE LAST INSTRUCTION')
+                            print(f'{instr_list[0].strip()} ERROR: hlt CAN ONLY BE THE LAST INSTRUCTION')
                             break
                         
                     bin_str=instruction_decode(k)
@@ -126,20 +126,18 @@ for i in test_files:
                                 bin_return.append(f'{bin_str}\n')
                                 break
                         else:
-                            print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {k.strip()} ERROR: BRANCH NOT DEFINED')
+                            print(f'{k.strip()} ERROR: BRANCH NOT DEFINED')
                             break
                         
                     elif bin_str!=None and 'ERROR' not in bin_str:
                         bin_return.append(f'{bin_str}\n')
                     
                     else:
-                        print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {k.strip()} {bin_str}')
+                        print(f'{k.strip()} {bin_str}')
                         break
             else:
                 if end_count==0:
-                    print(f'{cwd}/CSE112-Assignment/Assembler/tests/input_cases/{i}/{j} {k.strip()} {"ERROR: hlt NOT DECLARED"}')
+                    print(f'{k.strip()} {"ERROR: hlt NOT DECLARED"}')
                 else:
-                    output_case=open(f'{cwd}/CSE112-Assignment/Assembler/tests/output_cases/{i}/{j}.txt',"w")
-                        
-                    output_case.writelines(bin_return)
-                    output_case.close()
+                    for i in bin_return:
+                        print(i,end='')
