@@ -56,27 +56,6 @@ def instruction_decode(instruction):
         else:
             return 'ERROR: INVALID INSTRUCTION OR BRANCH PASSED'            
 
-# cwd=os.getcwd()
-# test_files=os.listdir(f'{cwd}/Assembler/tests/input_cases')
-
-# for i in test_files:
-#     files=os.listdir(f'{cwd}/Assembler/tests/input_cases/{i}')
-    
-#     try:
-#         os.mkdir(f'{cwd}/Assembler/tests/output_cases')
-#     except:
-#         pass
-#     try:
-#         os.mkdir(f'{cwd}/Assembler/tests/output_cases/{i}')
-#     except:
-#         pass
-    
-#     for j in files:
-#         Const.Mem.clear()
-#         Const.Mem_block.clear()
-#         E.br_var.clear()
-        
-#         with open(f'{cwd}/Assembler/tests/input_cases/{i}/{j}') as test_case:
 if __name__ == '__main__':        
             instr_list = sys.stdin.readlines()
             
