@@ -22,5 +22,5 @@ def movf(instruction):
         except:
             return "ERROR: INVALID REGISTER CODE OR IMMEDIATE VALUE IS NOT AN INTEGER"
     
-        return f'{MOVF}0{list[1].__repr__()}{bin(list[2])[2:].zfill(7)}'
+        return f'{MOVF}{list[1].__repr__()}{bin(list[2])[2:].zfill(8)}'
     return
