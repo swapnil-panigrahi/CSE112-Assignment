@@ -63,3 +63,28 @@ Mem_block=[]
 Mem={}
 
 Instructions=['var','add','sub','mov','ld','str','mul','div','rs','ls','xor','or','and','not','cmp','jmp','jlt','jgt','je','hlt']
+
+def decode_register(encode):
+    if encode=='000':
+        return R0
+    elif encode=='001':
+        return R1
+    elif encode=='010':
+        return R2
+    elif encode=='011':
+        return R3
+    elif encode=='100':
+        return R4
+    elif encode=='101':
+        return R5
+    elif encode=='110':
+        return R6
+    elif encode=='111':
+        return FLAGS
+    
+def decode_memory(encode):
+    if encode in Mem:
+        return Mem[encode]
+    else:
+        Mem[encode]=0
+        

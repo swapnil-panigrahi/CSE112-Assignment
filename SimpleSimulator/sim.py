@@ -51,3 +51,15 @@ if __name__ == '__main__':
                             E.greater_jmp(instr_list[i].strip())
                     elif(cmd == "11111"):
                             E.equal_jmp(instr_list[i].strip())
+                                    
+                    if cmd not in ('01111','11100','11101','11111'):
+                        i+=1
+                    else:
+                        if(cmd == "01111"):
+                            i=E.uncon_jmp(instr_list[i].strip())
+                        elif(cmd == "11100"):
+                            i=E.less_jmp(instr_list[i].strip())
+                        elif(cmd == "11101"):
+                            i=E.greater_jmp(instr_list[i].strip())
+                        elif(cmd == "11111"):
+                            i=E.equal_jmp(instr_list[i].strip())
