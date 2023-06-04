@@ -1,4 +1,5 @@
 from . import Constants as Const
+
 MOVF=10000
 
 def movf(instruction):    
