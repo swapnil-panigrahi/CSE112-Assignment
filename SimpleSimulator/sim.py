@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
             i = 0
             while(instr_list[i] != "1101000000000000"):
+                    print(bin(i).zfill(7), Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.R7, Const.FLAGS)
                     cmd = str((instr_list[i].strip())[0:6])
                     if(cmd == "00000"):
                             A.add(instr_list[i].strip())
