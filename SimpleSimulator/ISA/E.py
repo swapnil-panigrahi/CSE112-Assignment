@@ -13,44 +13,18 @@ def uncon_jmp(instruction):
     return label
   
 def less_jmp(instruction):
-    list = instruction.split()
+    label=eval('0b'+instruction[9:])
+    if Const.FLAGS & 4:
+        return label
     
-    if "FLAGS" in list:
-        return "ERROR: FLAGS CANNOT BE AN OPERAND HERE"
-    if len(list) > 2:
-        return "ERROR: MORE THAN ONE OPERAND GIVEN"
-    if len(list) < 2:
-        return "ERROR: INCOMPLETE INSTRUCTION"
-    
-    if list[0] != "jlt":
-        return "ERROR: ILLEGAL ARGUMENT"
-    else:
-        if list[1] not in br_var:
-            return "ERROR: BRANCH NOT DEFINED"
-        
-        for i in Const.Mem:
-            if i==list[1]: 
-                return f'{JUMP_LESS}0000{bin(Const.Mem[i])[2:].zfill(7)}'
+    return
     
 def greater_jmp(instruction):
-    list = instruction.split()
+    label=eval('0b'+instruction[9:])
+    if Const.FLAGS & 2:
+        return label
     
-    if "FLAGS" in list:
-        return "ERROR: FLAGS CANNOT BE AN OPERAND HERE"
-    if len(list) > 2:
-        return "ERROR: MORE THAN ONE OPERAND GIVEN"
-    if len(list) < 2:
-        return "ERROR: INCOMPLETE INSTRUCTION"
-    
-    if list[0] != "jgt":
-        return "ERROR: ILLEGAL ARGUMENT"
-    else:
-        if list[1] not in br_var:
-            return "ERROR: BRANCH NOT DEFINED"
-
-        for i in Const.Mem:
-            if i==list[1]: 
-                return f'{JUMP_GREAT}0000{bin(Const.Mem[i])[2:].zfill(7)}'
+    return
     
 def equal_jmp(instruction):
     list = instruction.split()
