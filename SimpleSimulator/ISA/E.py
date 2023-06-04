@@ -27,21 +27,8 @@ def greater_jmp(instruction):
     return
     
 def equal_jmp(instruction):
-    list = instruction.split()
-    
-    if "FLAGS" in list:
-        return "ERROR: FLAGS CANNOT BE AN OPERAND HERE"
-    if len(list) > 2:
-        return "ERROR: MORE THAN ONE OPERAND GIVEN"
-    if len(list) < 2:
-        return "ERROR: INCOMPLETE INSTRUCTION"
-    
-    if list[0] != "je":
-        return "ERROR: ILLEGAL ARGUMENT"
-    else:
-        if list[1] not in br_var:
-            return "ERROR: BRANCH NOT DEFINED"
+    label=eval('0b'+instruction[9:])
+    if Const.FLAGS & 1:
+        return label
 
-        for i in Const.Mem:
-            if i==list[1]: 
-                return f'{JUMP_EQUAL}0000{bin(Const.Mem[i])[2:].zfill(7)}'
+    return
