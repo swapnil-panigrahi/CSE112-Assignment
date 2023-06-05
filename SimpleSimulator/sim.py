@@ -8,11 +8,12 @@ from ISA import E
 from ISA import F
 
 if __name__ == '__main__':        
-            instr_list = str(sys.stdin.readlines())
+            instr_list = sys.stdin.readlines()
+            instr_list = [i.strip() for i in instr_list if i.strip()]
 
             i = 0
             while(instr_list[i] != "1101000000000000"):
-                    print(bin(i).zfill(7), Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.R7, Const.FLAGS)
+                    print(bin(i)[2:].zfill(7), Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.FLAGS)
                     cmd = str((instr_list[i].strip())[0:6])
                     if(cmd == "00000"):
                             A.add(instr_list[i].strip())
@@ -64,3 +65,5 @@ if __name__ == '__main__':
                             i=E.greater_jmp(instr_list[i].strip())
                         elif(cmd == "11111"):
                             i=E.equal_jmp(instr_list[i].strip())
+            
+            print(bin(i)[2:].zfill(7), Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.FLAGS)
