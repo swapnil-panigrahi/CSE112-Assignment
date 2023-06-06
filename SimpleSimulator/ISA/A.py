@@ -8,7 +8,7 @@ OR=Const.Opcode(0b01011)
 AND=Const.Opcode(0b01100)
 
 def add(instruction):
-        list = [instruction[8:11]]+[instruction[11:14]]+[instruction[14:]]
+        list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in list:
             i=Const.decode_register(i)
         list[0].value=list[1].value+list[2].value
@@ -18,7 +18,7 @@ def add(instruction):
             Const.FLAGS.overflow()
                 
 def sub(instruction):
-        list = [instruction[8:11]]+[instruction[11:14]]+[instruction[14:]]
+        list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in list:
             i=Const.decode_register(i)
         list[0].value=list[1].value-list[2].value
@@ -28,7 +28,7 @@ def sub(instruction):
             Const.FLAGS.overflow()
 
 def mul(instruction):
-        list = [instruction[8:11]]+[instruction[11:14]]+[instruction[14:]]
+        list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in list:
             i=Const.decode_register(i)
         list[0].value=list[1].value*list[2].value
@@ -38,19 +38,19 @@ def mul(instruction):
             Const.FLAGS.overflow()
 
 def xor(instruction):
-        list = [instruction[8:11]]+[instruction[11:14]]+[instruction[14:]]
+        list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in list:
             i=Const.decode_register(i)
         list[0].value=list[1].value^list[2].value
             
 def _or_(instruction):
-        list = [instruction[8:11]]+[instruction[11:14]]+[instruction[14:]]
+        list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in list:
             i=Const.decode_register(i)
         list[0].value=list[1].value | list[2].value
             
 def _and_(instruction):
-        list = [instruction[8:11]]+[instruction[11:14]]+[instruction[14:]]
+        list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in list:
             i=Const.decode_register(i)
         list[0].value=list[1].value & list[2].value

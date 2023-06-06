@@ -11,41 +11,18 @@ br_var = []
 def uncon_jmp(instruction):
     label=eval('0b'+instruction[9:])
     return label
-  
-    label=eval('0b'+instruction[9:])
-    return label
     
 def less_jmp(instruction):
     label=eval('0b'+instruction[9:])
     if Const.FLAGS & 4:
         return label
-    label=eval('0b'+instruction[9:])
-    if Const.FLAGS & 4:
-        return label
-    
-    return
-    return
     
 def greater_jmp(instruction):
     label=eval('0b'+instruction[9:])
     if Const.FLAGS & 2:
         return label
-    label=eval('0b'+instruction[9:])
-    if Const.FLAGS & 2:
-        return label
     
-    return
-    
-    return
-
 def equal_jmp(instruction):
     label=eval('0b'+instruction[9:])
     if Const.FLAGS & 1:
         return label
-
-    return
-    label=eval('0b'+instruction[9:])
-    if Const.FLAGS & 1:
-        return label
-
-    return
