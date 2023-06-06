@@ -44,7 +44,7 @@ def movf(instruction):
             if list[2]>16 or list[2]<0:
                 return "ERROR: GIVEN VALUE CAN'T BE REPRESENTED IN FLOATING POINT REPRESENTATION"
         except:
-            return "ERROR: INVALID REGISTER CODE OR IMMEDIATE VALUE IS NOT AN INTEGER"
+            return "ERROR: INVALID REGISTER CODE"
         
         c=float_bin(list[2])
         d=len(c)

@@ -19,23 +19,17 @@ def movf(instruction):
     ans2=ans2+1
     ans4=ans2*ans3
     list[0].value=ans4
+    
+    return ans4
 
 def addf(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in range(3):
             list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value+list[2].value
-            
-        if list[0].value >= 0b0000000000010000:
-            list[0].value = 0b0000000000000000
-            Const.FLAGS.overflow()
 
 def subf(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
         for i in range(len(list)):
             list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value-list[2].value
-            
-        if list[0].value < 0b0000000000000000:
-            list[0].value = 0b0000000000000000
-            Const.FLAGS.overflow()

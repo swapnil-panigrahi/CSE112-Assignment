@@ -6,6 +6,7 @@ from ISA import C
 from ISA import D
 from ISA import E
 from ISA import F
+from ISA import Float
 
 def main():
             instr_list = sys.stdin.readlines()
@@ -47,7 +48,12 @@ def main():
                             C.inv(instr_list[i].strip())
                     elif(cmd == "01110"):
                             C.comp(instr_list[i].strip())
-                                    
+                    elif(cmd == '10000'):
+                            Float.addf(instr_list[i].strip())
+                    elif(cmd == '10001'):
+                            Float.subf(instr_list[i].strip())
+                    elif(cmd == '10010'):
+                            Float.movf(instr_list[i].strip())
                     if cmd not in ('01111','11100','11101','11111'):
                         i+=1
                     else:
