@@ -26,7 +26,7 @@ def addf(instruction):
             list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value+list[2].value
             
-        if list[0].value >= 0b0000000010000000:
+        if list[0].value >= 0b0000000000010000:
             list[0].value = 0b0000000000000000
             Const.FLAGS.overflow()
 
