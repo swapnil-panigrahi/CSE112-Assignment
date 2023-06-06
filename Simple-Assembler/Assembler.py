@@ -6,6 +6,7 @@ from ISA import C
 from ISA import D
 from ISA import E
 from ISA import F        
+from ISA import Float
 
 def instruction_decode(instruction):
         instr_header=instruction.strip().split()[0].strip(':')
@@ -51,6 +52,12 @@ def instruction_decode(instruction):
             return E.greater_jmp(instruction.strip())
         elif instr_header=='je':
             return E.equal_jmp(instruction.strip())
+        elif instr_header=='movf':
+            return Float.movf(instruction.strip())
+        elif instr_header=='addf':
+            return Float.addf(instruction.strip())
+        elif instr_header=='subf':
+            return Float.subf(instruction.strip())
         elif instr_header=='hlt':
             return F.hlt(instruction.strip())
         else:
