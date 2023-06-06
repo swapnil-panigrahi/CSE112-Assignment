@@ -43,6 +43,27 @@ def movf(instruction):
             while num > 1:
                 num /= 10
             return num
+
+def movf(instruction):    
+    list=instruction.split()
+    if "FLAGS" in list:
+        return "ERROR: FLAGS CANNOT BE AN OPERAND HERE"
+    if len(list) > 3:
+        return "ERROR: MORE THAN TWO OPERANDS GIVEN"
+    if len(list) < 3:
+        return "ERROR: INCOMPLETE INSTRUCTION"
+    if list[0] != "movf":
+        return "ERROR: ILLEGAL ARGUMENT"
+    else:
+        try:
+            list[1]=eval("Const."+list[1])
+            list[2]=float(list[2][1:])
+            
+            if list[2]>127 or list[2]<0:
+                return "ERROR: GIVEN VALUE HAS MORE THAN 7 BITS OR IS NEGATIVE"
+        except:
+            return "ERROR: INVALID REGISTER CODE OR IMMEDIATE VALUE IS NOT AN INTEGER"
+        
         c=float_bin(list[2])
         d=len(c)
         count=0
