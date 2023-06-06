@@ -12,7 +12,9 @@ if __name__ == '__main__':
             instr_list = [i.strip() for i in instr_list]
             
             i = 0
+            jump = 0
             while(instr_list[i] != "1101000000000000"):
+                    old_FLAG=Const.FLAGS.value                    
                     
                     cmd = str((instr_list[i].strip())[0:5])
                     if(cmd == "00000"):
@@ -45,32 +47,38 @@ if __name__ == '__main__':
                             C.inv(instr_list[i].strip())
                     elif(cmd == "01110"):
                             C.comp(instr_list[i].strip())
-                    elif(cmd == "01111"):
-                            E.uncon_jmp(instr_list[i].strip())
-                    elif(cmd == "11100"):
-                            E.less_jmp(instr_list[i].strip())
-                    elif(cmd == "11101"):
-                            E.greater_jmp(instr_list[i].strip())
-                    elif(cmd == "11111"):
-                            E.equal_jmp(instr_list[i].strip())
                                     
                     if cmd not in ('01111','11100','11101','11111'):
                         i+=1
                     else:
                         if(cmd == "01111"):
-                            i=E.uncon_jmp(instr_list[i].strip())
+                            jump=E.uncon_jmp(instr_list[i].strip())
                         elif(cmd == "11100"):
-                            i=E.less_jmp(instr_list[i].strip())
+                            jump=E.less_jmp(instr_list[i].strip())
                         elif(cmd == "11101"):
-                            i=E.greater_jmp(instr_list[i].strip())
+                            jump=E.greater_jmp(instr_list[i].strip())
                         elif(cmd == "11111"):
-                            i=E.equal_jmp(instr_list[i].strip())
-                            
-                    print(bin(i-1)[2:].zfill(7), Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.FLAGS)
+                            jump=E.equal_jmp(instr_list[i].strip())
+                        
+                        i+=1
+                    
+                    new_FLAG=Const.FLAGS.value
+
+                    if old_FLAG==new_FLAG:
+                           Const.FLAGS.value=0
+
+                    print(bin(i-1)[2:].zfill(7), " "*6, Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.FLAGS)
             
-            print(bin(i)[2:].zfill(7), Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.FLAGS)
+                    if cmd in ('01111','11100','11101','11111'):
+                        if jump!=None:
+                            i=jump
+
+            print(bin(i)[2:].zfill(7), " "*6, Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.FLAGS)
             for i in instr_list:
                     print(i)
+
+            for i in Const.Mem_block:
+                    print(bin(Const.Mem[i])[2:].zfill(16))
             else:
-                    for i in range(128-len(instr_list)):
+                    for i in range(128-len(instr_list)-len(Const.Mem_block)):
                             print(bin(0)[2:].zfill(16))

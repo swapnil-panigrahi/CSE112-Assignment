@@ -7,15 +7,15 @@ COMP=Const.Opcode(0b01110)
 
 def movr(instruction):
     list = [instruction[10:13]]+[instruction[13:]]
-    for i in list:
-        i=Const.decode_register(i)
+    for i in range(2):
+        list[i]=Const.decode_register(list[i])
     
     list[0].value=list[1].value
 
 def div(instruction):
     list = [instruction[10:13]]+[instruction[13:]]
-    for i in list:
-        i=Const.decode_register(i)
+    for i in range(2):
+        list[i]=Const.decode_register(list[i])
         
     if list[1].value==0:
         Const.FLAGS.overflow()
@@ -27,18 +27,21 @@ def div(instruction):
           
 def inv(instruction):
     list = [instruction[10:13]]+[instruction[13:]]
-    for i in list:
-        i=Const.decode_register(i)
+    for i in range(2):
+        list[i]=Const.decode_register(list[i])
         
     list[0] = -(~(list[1].value))
     
 def comp(instruction):
     list = [instruction[10:13]]+[instruction[13:]]
-    for i in list:
-        i=Const.decode_register(i)
+    for i in range(2):
+        list[i]=Const.decode_register(list[i])
         
     if list[0].value > list[1].value:
         Const.FLAGS.greater_than()
         
     elif list[0].value < list[1].value:
         Const.FLAGS.less_than()
+
+    elif list[0].value == list[1].value:
+        Const.FLAGS.equal()

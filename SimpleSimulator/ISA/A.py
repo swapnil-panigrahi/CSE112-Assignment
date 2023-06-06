@@ -9,8 +9,8 @@ AND=Const.Opcode(0b01100)
 
 def add(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
-        for i in list:
-            i=Const.decode_register(i)
+        for i in range(3):
+            list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value+list[2].value
             
         if list[0].value >= 0b0000000010000000:
@@ -19,8 +19,8 @@ def add(instruction):
                 
 def sub(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
-        for i in list:
-            i=Const.decode_register(i)
+        for i in range(len(list)):
+            list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value-list[2].value
             
         if list[0].value < 0b0000000000000000:
@@ -29,8 +29,8 @@ def sub(instruction):
 
 def mul(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
-        for i in list:
-            i=Const.decode_register(i)
+        for i in range(len(list)):
+            list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value*list[2].value
             
         if list[0].value >= 0b0000000010000000:
@@ -39,18 +39,18 @@ def mul(instruction):
 
 def xor(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
-        for i in list:
-            i=Const.decode_register(i)
+        for i in range(len(list)):
+            list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value^list[2].value
             
 def _or_(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
-        for i in list:
-            i=Const.decode_register(i)
+        for i in range(len(list)):
+            list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value | list[2].value
             
 def _and_(instruction):
         list = [instruction[7:10]]+[instruction[10:13]]+[instruction[13:]]
-        for i in list:
-            i=Const.decode_register(i)
+        for i in range(len(list)):
+            list[i]=Const.decode_register(list[i])
         list[0].value=list[1].value & list[2].value

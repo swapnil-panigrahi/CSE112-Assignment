@@ -24,6 +24,7 @@ class Memory:
     
     def __str__(self):
         return f'{bin(self.address)[2:].zfill(7)}'
+
 class Opcode:
     def __init__(self,opcode):
         self.opcode=opcode
@@ -87,4 +88,4 @@ def decode_memory(encode):
         return Mem[encode]
     else:
         Mem[encode]=0
-        
+        Mem_block.append(encode)

@@ -27,14 +27,14 @@ def load(instruction):
     list = [instruction[6:9]]+[instruction[9:]]
     
     list[0]=Const.decode_register(list[0])
-    list[1]=Const.decode_memory(list[1])
+    Const.decode_memory(list[1])
     
-    list[0].value=list[1]
+    list[0].value=Const.Mem[list[1]]
     
 def store(instruction):
     list = [instruction[6:9]]+[instruction[9:]]
         
     list[0]=Const.decode_register(list[0])
-    list[1]=Const.decode_memory(list[1])
+    Const.decode_memory(list[1])
     
     Const.Mem[list[1]]=list[0].value
