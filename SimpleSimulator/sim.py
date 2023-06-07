@@ -7,7 +7,7 @@ from ISA import D
 from ISA import E
 from ISA import F
 
-if __name__ == '__main__':        
+def main():
             instr_list = sys.stdin.readlines()
             instr_list = [i.strip() for i in instr_list]
             
@@ -82,3 +82,6 @@ if __name__ == '__main__':
             else:
                     for i in range(128-len(instr_list)-len(Const.Mem_block)):
                             print(bin(0)[2:].zfill(16))
+
+if __name__ == '__main__':        
+        main()
