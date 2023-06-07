@@ -1,5 +1,5 @@
 # CSE112-Assignment
-# CO ASSembler-Simulator Assignment
+# CO Assembler-Simulator Assignment
 This is the repository for group B1000<sub>2</sub> for the Computer Organization course during the Winter 2022 semester at IIITD.
 
 ## About the repository
