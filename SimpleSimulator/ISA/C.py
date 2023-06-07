@@ -22,16 +22,23 @@ def div(instruction):
         Const.R0=0
         Const.R1=0
     else:
-        Const.R0=list[0]//list[1]
-        Const.R1=list[0]%list[1]
+        Const.R0.value=list[0].value//list[1].value
+        Const.R1.value=list[0].value%list[1].value
           
 def inv(instruction):
     list = [instruction[10:13]]+[instruction[13:]]
     for i in range(2):
         list[i]=Const.decode_register(list[i])
         
-    list[0] = -(~(list[1].value))
+    R0=str(bin(list[1].value)[2:].zfill(16))
+    R1=''
+    for i in range(16):
+        if R0[i]=='0':
+            R1+='1'
+        else:
+            R1+='0'
     
+    list[0].value=int(eval('0b'+R1))
 def comp(instruction):
     list = [instruction[10:13]]+[instruction[13:]]
     for i in range(2):

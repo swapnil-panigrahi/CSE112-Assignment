@@ -69,7 +69,7 @@ def inv(instruction):
         except:
             return "ERROR: INVALID REGISTER CODE"
     
-        list[0].value=~(list[1].value)
+        list[0].value=-(~(list[1].value))
         return f'{NOT}00000{list[0].__repr__()}{list[1].__repr__()}'
 
 def comp(instruction):

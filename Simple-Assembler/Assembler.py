@@ -104,7 +104,7 @@ if __name__ == '__main__':
                     
                     elif 'BRANCH NOT DEFINED' in bin_str:
                         for l in range(instr_list.index(k)+1,len(instr_list)):
-                            if k.split()[1].strip(":") in instr_list[l]:
+                            if k.split()[1].strip(":") in (instr_list[l].split()[0]).strip(':'):
                                 E.br_var.append(k.split()[1])
                                 Const.Mem[k.split()[1]]=l
                                 

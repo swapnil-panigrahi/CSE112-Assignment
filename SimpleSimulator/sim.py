@@ -78,11 +78,12 @@ def main():
                     if cmd in ('01111','11100','11101','11111'):
                         if jump!=None:
                             i=jump
+            Const.FLAGS.value=0
 
             print(bin(i)[2:].zfill(7), " "*6, Const.R0, Const.R1, Const.R2, Const.R3, Const.R4, Const.R5, Const.R6, Const.FLAGS)
             for i in instr_list:
                     print(i)
-
+            Const.Mem_block.sort()
             for i in Const.Mem_block:
                     print(bin(Const.Mem[i])[2:].zfill(16))
             else:
